@@ -1,5 +1,6 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+require 'seed/movie_lens'
 class MoviesPopulator
   def initialize(imdb_file)
     @imdb_file = imdb_file
@@ -16,7 +17,8 @@ class MoviesPopulator
   def create_movie(values)
     values[1] = runtime_in_mins(values[1])
     values[13] = parse_released_date(values[13])
-    Movie.create_from(values, MovieLens.id_from_title(values[3]))
+    id = MovieLens.id_from_title(values[3])
+    Movie.create_from(values, id)
   end
 
   def runtime_in_mins(str)
@@ -32,18 +34,6 @@ class MoviesPopulator
   end
 end
 
-class MovieLens
-  def self.id_from_title(title)
-    movies = {}
-    File.open(ENV["MOVIES_FROM_ML"]).lines.each do |l|
-      values = l.split('::')
-      title = values[1].sub(/\s\(\d+\)/,"")
-      id = values[0]
-      movies[title] = id
-    end
-    movies[title]
-  end
-end
 
 class String
   def self.split_respecting_double_quotes(str, delim)
