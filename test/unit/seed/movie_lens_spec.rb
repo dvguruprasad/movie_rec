@@ -3,7 +3,8 @@ require 'seed/movie_lens'
 class MovieLensTest
   describe MovieLens do
     it "should get the id given a movie title" do
-      File.stub(:open){double(:lines => movie_data.split("\n"))}
+      file = double("File", :lines => movie_data.split("\n"))
+      File.stub(:open).and_return(file)
       MovieLens.id_from_title("Toy Story").should eq("1")
       MovieLens.id_from_title("GoldenEye").should eq("10")
       MovieLens.id_from_title("foobar").should eq(nil)
