@@ -14,12 +14,8 @@ class RatingsPopulator
           User.new(){|u| u.id = values[0]; u.save}
           user_ids << values[0]
         end
-        Rating.new(:user_id => values[0], :movie_id => values[1], :rating => values[2]).save
+        Rating.new(:user_id => values[0], :movie_id => values[1], :value => values[2]).save
       end
     end
-  end
-
-  def create_rating(values)
-    Rating.new(:user_id => values[0], :movie_id => values[1], :rating => values[2])
   end
 end

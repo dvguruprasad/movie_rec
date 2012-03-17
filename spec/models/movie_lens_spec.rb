@@ -1,6 +1,7 @@
+require 'spec_helper'
 require 'seed/movie_lens'
 
-class MovieLensTest
+class MovieLensSpec
   describe MovieLens do
     it "should get the id given a movie title" do
       file = double("File", :lines => movie_data.split("\n"))

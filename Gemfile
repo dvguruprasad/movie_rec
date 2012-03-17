@@ -35,4 +35,6 @@ group :test do
   gem 'turn', '0.8.2', :require => false
   gem 'rspec'
   gem 'mocha'
+  gem 'factory_girl_rails'
 end
+gem "rspec-rails", :group => [:development, :test]
