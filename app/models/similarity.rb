@@ -1,0 +1,3 @@
+class Similarity
+
+end
