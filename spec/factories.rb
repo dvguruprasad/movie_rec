@@ -3,10 +3,12 @@ Factory.define :user do |user|
   user.email 'ninja@foo.com'
 end
 
-Factory.define :rating do |rating|
+Factory.define :movie do |movie|
+  movie.ratings {|m| m.association(:rating)}
 end
 
-Factory.define :movie do |movie|
+Factory.define :rating do |rating|
+  rating.movie {|r| r.association(:movie)}
 end
 
 Factory.define :movie_dinosaur_planet, :class => Movie do |movie|
@@ -27,4 +29,8 @@ end
 
 Factory.define :movie_raging_bull, :class => Movie do |movie|
   movie.title "Raging Bull" 
+end
+
+Factory.define :movie_fight_club, :class => Movie do |movie|
+  movie.title "Fight Club"
 end
