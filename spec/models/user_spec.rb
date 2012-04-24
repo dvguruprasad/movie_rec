@@ -54,8 +54,8 @@ class UserSpec
         user2 = Factory.create(:user, :ratings => [Factory.create(:rating, :value => 3, :movie => @batman_begins), Factory.create(:rating, :value => 3, :movie => @congo), Factory.create(:rating, :value => 3, :movie => @screamers)])
         common = user1.common_movies_rated(user2)
         common.should have(2).items
-        common.first.should be(@congo)
-        common.last.should be(@screamers)
+        common.first.should be(@congo.id)
+        common.last.should be(@screamers.id)
       end
     end
   end
